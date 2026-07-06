@@ -1,4 +1,4 @@
-vim.cmd("autocmd!")
+--vim.cmd("autocmd!")
 
 vim.scriptencoding = "utf-8"
 
@@ -14,7 +14,7 @@ vim.o.updatetime = 300 -- カーソルを止めてからポップアップが出
 vim.api.nvim_create_autocmd("CursorHold", {
   callback = function()
     vim.diagnostic.open_float(nil, {
-      focusable = false,
+      focusable = true,
       scope = "cursor", -- カーソル位置の診断のみ表示
     })
   end,

@@ -95,7 +95,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "jose-elias-alvarez/typescript.nvim",
       "mason-org/mason.nvim",
       "mason-org/mason-lspconfig.nvim",
     },
@@ -124,11 +123,6 @@ return {
         capabilities = capabilities,
       })
 
-      -- typescript
-      require("typescript").setup({
-        capabilities = capabilities,
-      })
-
       -- go
       require("lspconfig").gopls.setup({
         capabilities = capabilities,
@@ -145,15 +139,6 @@ return {
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
       ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
-      setup = {
-        -- example to setup with typescript.nvim
-        tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
-        -- Specify * to use this function as a fallback for any server
-        -- ["*"] = function(server, opts) end,
-      },
     },
   },
 
@@ -203,7 +188,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        python = { "black" },
+        python = { "ruff_format" },
         lua = { "stylua" },
       },
     },
@@ -243,6 +228,35 @@ return {
           ["<Up>"] = { "select_prev", "fallback" },
           ["<Down>"] = { "select_next", "fallback" },
         },
+      },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    opts = {
+      cmdline = {
+        keymap = {
+          preset = "cmdline",
+          ["<Up>"] = { "select_prev", "fallback" },
+          ["<Down>"] = { "select_next", "fallback" },
+        },
+      },
+    },
+    config = function(_, opts)
+      require("scrollbar").setup(opts)
+      require("scrollbar.handlers.search").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+      require("scrollbar.handlers.diagnostic").setup()
+    end,
+  },
+
+  {
+    "petertriho/nvim-scrollbar",
+    event = "VeryLazy",
+    opts = {
+      show = true,
+      handle = {
+        color = "#888888",
       },
     },
   },

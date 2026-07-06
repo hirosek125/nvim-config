@@ -47,7 +47,14 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
+vim.paste = (function(overridden)
+  return function(lines, phase)
+    for i, line in ipairs(lines) do
+      lines[i] = line:gsub("\r$", "")
+    end
+    return overridden(lines, phase)
+  end
+end)(vim.paste)
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

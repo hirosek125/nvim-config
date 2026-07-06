@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 vim.opt.guifont = "Hack Nerd Font Mono"
 
 require("lazy").setup({
+  concurrency = 2,
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
