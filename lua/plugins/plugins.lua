@@ -242,12 +242,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("scrollbar").setup(opts)
-      require("scrollbar.handlers.search").setup()
-      require("scrollbar.handlers.gitsigns").setup()
-      require("scrollbar.handlers.diagnostic").setup()
-    end,
   },
 
   {
@@ -259,5 +253,16 @@ return {
         color = "#888888",
       },
     },
+    config = function(_, opts)
+      require("scrollbar").setup(opts)
+      require("scrollbar.handlers.search").setup()
+      require("scrollbar.handlers.gitsigns").setup()
+      require("scrollbar.handlers.diagnostic").setup()
+    end,
+  },
+  {
+    "kevinhwang91/nvim-hlslens",
+    event = "VeryLazy",
+    opts = {},
   },
 }
