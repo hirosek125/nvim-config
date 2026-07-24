@@ -14,3 +14,5 @@ end, { expr = true })
 vim.keymap.set("c", "<Up>", function()
   return vim.fn.pumvisible() == 1 and "<C-p>" or "<Up>"
 end, { expr = true })
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
